@@ -28,4 +28,5 @@ Welcome to cite our work if you find it is helpful to your research.
 | ViT-B/32 | IN-21K + GCC-15M + YFCC-14M | IN-21K Prompts + GCC-15M + YFCC-14M + Downstream Tasks' Prompts | 66.1% | 57.7% |  79.4% | - | [ckpt](https://drive.google.com/drive/folders/1u9bW_J2azACwN4r8SVy88WREw-wIwWom?usp=sharing)
 
 ## Evaluation
-Our evaluation is based on [ELEVATER](https://github.com/Computer-Vision-in-the-Wild/Elevater_Toolkit_IC) benchmark (Please refer to [README](Evaluation/README.md)  in `Evaluation` repo).
+Our evaluation is based on [ELEVATER](https://github.com/Computer-Vision-in-the-Wild/Elevater_Toolkit_IC) benchmark (Please refer to [README](Evaluation/README.md)  in `Evaluation` folder). We extend `ELEVATER` benchmark to include the ImageNet Variants as the Robustness Evaluation. The download links of these datasets can be found in [README](Evaluation/README.md). 
+
