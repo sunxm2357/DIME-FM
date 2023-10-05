@@ -1,0 +1,6 @@
+DATASET:
+  DATASET: 'imagenet-sketch'
+  ROOT: '../DATASET/imagenet-sketch/'
+  TEST_SET: 'classification/imagenet-sketch/sketch/'
+TEST:
+  METRIC: 'accuracy'

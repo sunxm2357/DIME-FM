@@ -1,0 +1,6 @@
+DATASET:
+  DATASET: 'imagenetv2'
+  ROOT: '../DATASET/imagenetv2/'
+  TEST_SET: 'classification/imagenetv2/'
+TEST:
+  METRIC: 'accuracy'

@@ -1,0 +1,6 @@
+DATASET:
+  DATASET: 'imagenet-r'
+  ROOT: '../DATASET/imagenet-r/'
+  TEST_SET: 'classification/imagenet_r/val/'
+TEST:
+  METRIC: 'accuracy'

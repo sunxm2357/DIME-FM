@@ -1,0 +1,63 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --job-name=cc3m_inpair_zero_shot
+#SBATCH --partition=learnai4rl
+#SBATCH --gres=gpu:1
+#SBATCH --cpus-per-task=12
+#SBATCH  --account all
+
+#SBATCH --error=log_zero_shot.e.log
+#SBATCH --output=log_zero_shot.o.log
+
+
+MODEL_CFG=clip_vit_distill
+MODE=zeroshot
+CKPT=$1
+OUTPUT_DIR=/checkpoints/$USER/output/evaluations/
+
+cd ../../
+
+# 13
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=imagenet-1k CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+
+# 1
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=caltech101  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 2
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=cifar10  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 3
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=cifar100  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 4
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=country211  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 5
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=dtd  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 6
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=eurosat-clip  CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 7
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=fer2013 CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 8
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=fgvc-aircraft-2013b CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 9
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=flower102 CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 10
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=food101 CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 11
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=gtsrb CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 12
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=hateful-memes CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 14
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=kitti-distance CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 15
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=mnist CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 16
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=oxford-iiit-pets CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 17
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=patchcamelyon CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 18
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=rendered-sst2 CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 19
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=resisc45-clip CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 20
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=stanfordcar CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+# 21
+MODEL_CFG=$MODEL_CFG MODE=$MODE DATASET=voc2007classification CKPT=$CKPT  OUTPUT_DIR=$OUTPUT_DIR bash run_multi.sh
+
