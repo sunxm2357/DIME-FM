@@ -18,8 +18,8 @@ Welcome to cite our work if you find it is helpful to your research.
 
 ## Release TODO List
 - [x] Checkpoints
-- [ ] Evaluation code
-- [ ] Training code
+- [x] Evaluation code
+- [ ] Training code (Expected by the end of Oct)
 
 ## Checkpoints
 | Model | Image Training Set | Text Training Set |ZS on IN-1K | ZS on ELEVATER | LP on ELEVATER | Robustness | Download
