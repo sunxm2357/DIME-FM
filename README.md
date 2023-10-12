@@ -19,7 +19,7 @@ Welcome to cite our work if you find it is helpful to your research.
 ## Release TODO List
 - [x] Checkpoints
 - [x] Evaluation code
-- [ ] Training code (Expected by the end of Oct)
+- [x] Training code (Expected by the end of Oct)
 
 ## Checkpoints
 | Model | Image Training Set | Text Training Set |ZS on IN-1K | ZS on ELEVATER | LP on ELEVATER | Robustness | Download
@@ -30,3 +30,36 @@ Welcome to cite our work if you find it is helpful to your research.
 ## Evaluation
 Our evaluation is based on [ELEVATER](https://github.com/Computer-Vision-in-the-Wild/Elevater_Toolkit_IC) benchmark (Please refer to [README](Evaluation/README.md)  in `Evaluation` folder). We extend `ELEVATER` benchmark to include the ImageNet Variants as the Robustness Evaluation. The download links of these datasets can be found  [HERE](Evaluation/README.md). 
 
+## Training
+We provide the training code in [Training](Training) folder.
+
+### Environment
+```angular2html
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+pip install timm 
+pip install ftfy regex tqdm
+pip install git+https://github.com/openai/CLIP.git
+pip install transformers
+pip install yacs
+```
+
+### Prepare the Data
+For faster dataloading speed, we pack all data in `tsv` files according to [this repo](https://github.com/microsoft/scene_graph_benchmark/tree/main/tools/mini_tsv). We extract the features of image and text using CLIP-ViT-L/14 models. All features are also stored in `tsv` form.
+
+We provide examples of image, text, image features, text features.
+
+|     Data      |                                                                                          Download Link                                                                                          |
+|:-------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+|     Image     | [tsv](https://drive.google.com/file/d/1OBR7N3YA3BLEks0vOCNX8rK8DjkNo7qw/view?usp=drive_link) / [lineidx](https://drive.google.com/file/d/1fyBeZOgbwWgO-iM0rkgw0_hmnB8QDtT9/view?usp=drive_link) |
+|     Text      | [tsv](https://drive.google.com/file/d/1SNvG4xbrP_WiEex-X1VF-4H3ib75Ub_0/view?usp=drive_link) / [lineidx](https://drive.google.com/file/d/1EXLa1BpJJEJRvkP4wG2nEfMFaf3i0SBQ/view?usp=drive_link) |
+| Image Feature | [tsv](https://drive.google.com/file/d/1ljwZlQP56nV4RLOMYG9fIlLQkavjtmhb/view?usp=drive_link) / [lineidx](https://drive.google.com/file/d/1ifp2aMDEIxK1mjZVShpApEQngeAhjaOG/view?usp=drive_link) |
+| Text Feature  |                                           [tsv](https://drive.google.com/file/d/1SkxBtzSDkwQ1QYqUyrzhSPKj2TvE-UOc/view?usp=drive_link) / [lineidx](https://drive.google.com/file/d/1CBjz6BnldtE69K4ihQmD5iwJOYiD2w3R/view?usp=drive_link)                                            |
+
+### Training command
+```angular2html
+cd Training
+python train_amp.py  --amp --dataroot <your_dataroot> --tsv_file_list  configs/datalists/cc3m/image.list \
+configs/datalists/cc3m/image_feat.list configs/datalists/cc3m/text.list  configs/datalists/cc3m/text_feat.list \
+--batch_size <your_batch_size> --use_pvl_loss 
+```
+Please refer to [Data Parallel Example](https://github.com/pytorch/examples/blob/main/distributed/ddp/README.md) to extend to multiple gpus and nodes.
